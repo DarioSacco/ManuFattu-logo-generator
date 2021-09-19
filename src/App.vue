@@ -12,7 +12,7 @@
 
       <fieldset class="prodotti">
         <legend class="title">Quali prodotti realizzi?</legend>
-        <span>Scegline tutto quello che vuoi.</span>
+        <span>Scegli tutto quello che vuoi.</span>
         <ul class="list">
           <li>
             <input
@@ -120,7 +120,7 @@
 
       <fieldset class="materiali">
         <legend class="title">Che materiali usi?</legend>
-        <span>Scegline tutto quello che vuoi.</span>
+        <span>Scegli tutto quello che vuoi.</span>
         <ul class="list">
           <li>
             <input

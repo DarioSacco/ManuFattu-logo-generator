@@ -507,7 +507,8 @@ fieldset > * + .list {
 }
 
 .list input[data-checked] + label::before {
-  background: var(--input-red);
+  /* background: var(--input-red); */
+  background: #444;
 }
 
 .palettes label {
@@ -550,14 +551,17 @@ fieldset > * + .list {
 
 .result svg[data-layer='prodotto'] {
   fill: var(--primary);
+  z-index: 1;
 }
 
 .result svg[data-layer='materiale'] {
   fill: var(--secondary);
+  z-index: 0;
 }
 
 .result svg[data-layer='tecnica'] {
   fill: var(--tertiary);
+  z-index: 2;
 }
 
 .brand-name {

@@ -1,0 +1,63 @@
+<template>
+  <form @change="onEdit">
+    <fieldset class="palettes">
+      <legend class="title">I tuoi colori aziendali</legend>
+      <span>Scegli una sola palette.</span>
+      <ul class="list">
+        <li v-for="paletteName in PALETTES" :key="paletteName">
+          <input
+            :id="paletteName"
+            :value="paletteName"
+            type="radio"
+            v-model="palette"
+            :data-checked="paletteName === palette || null"
+          />
+          <label :for="paletteName">{{ paletteName }}</label>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
+</template>
+
+<script>
+const PALETTES = [
+  'fresco',
+  'solare',
+  'pastello',
+  'dark',
+  'bio',
+  'gold',
+  'tea',
+  'pink',
+  'estate',
+  'mare',
+  'coffee',
+  'lago',
+  'salotto',
+  'muschio'
+];
+
+export default {
+  data() {
+    return {
+      palette: '',
+    };
+  },
+  methods: {
+    onEdit() {
+      this.$emit('dataChange', { palette: this.palette });
+    }
+  },
+  computed: {
+    PALETTES() {
+      return PALETTES;
+    },
+  },
+}
+</script>
+
+<style>
+.palettes label {
+  text-transform: capitalize;
+}
+</style>

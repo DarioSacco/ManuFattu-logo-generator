@@ -60,4 +60,9 @@ export default {
 .palettes label {
   text-transform: capitalize;
 }
+
+.palettes .list {
+  display: block;
+  column-count: 2;
+}
 </style>

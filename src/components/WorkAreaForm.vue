@@ -1,5 +1,5 @@
 <template>
-  <form @change="onEdit">
+  <form class="work-area-form" @change="onEdit">
     <fieldset class="prodotti">
       <legend class="title">Quali prodotti realizzi?</legend>
       <span>Scegli tutto quello che vuoi.</span>
@@ -205,3 +205,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .work-area-form fieldset {
+    max-width: 33%;
+  }
+</style>

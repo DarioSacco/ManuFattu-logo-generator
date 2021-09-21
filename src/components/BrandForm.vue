@@ -1,11 +1,11 @@
 <template>
-  <form @change="onEdit">
+  <form class="brand-form" @change="onEdit">
     <fieldset class="brand">
       <label class="title">Nome della tua attività</label>
-      <input type="text" v-model="brandName" required />
+      <input type="text" v-model="brandName" @input="onEdit" required />
       <label class="title">Di cosa ti occupi?</label>
       <span>Dillo con due o tre parole</span>
-      <input type="text" v-model="brandDescription" placeholder="es. riciclo creativo" required />
+      <input type="text" v-model="brandDescription" @input="onEdit" placeholder="es. riciclo creativo" required />
     </fieldset>
   </form>
 </template>

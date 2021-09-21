@@ -22,10 +22,12 @@
         ></LogoFragment>
         <LogoFragment v-show="!!tecnica" :name="tecnica" data-layer="tecnica"></LogoFragment>
       </div>
-      <p class="brand-name">{{ brandName || 'nome attività' }}</p>
-      <p class="brand-description">{{ brandDescription || 'descrizione attività' }}</p>
 
-      <Stepper :step="step" @stepChanged="onStepChanged"></Stepper>
+      <div class="brand">
+        <p class="brand-name">{{ brandName || 'nome attività' }}</p>
+        <p class="brand-description">{{ brandDescription || 'descrizione attività' }}</p>
+        <Stepper :step="step" @stepChanged="onStepChanged"></Stepper>
+      </div>
     </section>
   </div>
 </template>
@@ -220,19 +222,11 @@ legend {
 
 .page {
   display: flex;
-  width: 100%;
-  height: 100%;
   gap: var(--gutter);
-}
-
-.page > * {
-  width: 50%;
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .title {
@@ -240,15 +234,14 @@ section {
   font-weight: 500;
 }
 
+.data-forms {
+  flex: 1 auto;
+}
+
 .data-forms > * {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  max-height: 100vh;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
   gap: var(--gutter);
+  height: 100%;
 }
 
 .data-forms fieldset {
@@ -263,7 +256,6 @@ section {
 .list {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--gutter) * 0.5);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -272,6 +264,10 @@ section {
 .list li {
   display: flex;
   align-items: center;
+}
+
+.list li:not(:first-of-type) {
+  margin-top: calc(var(--gutter) * 0.5);
 }
 
 .list input[type="radio"],
@@ -283,7 +279,7 @@ section {
 }
 
 .list label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   border: 2px solid transparent;
   cursor: pointer;
@@ -291,16 +287,20 @@ section {
 
 .list input + label::before {
   content: "";
+  display: inline-flex;
   width: 16px;
+  min-width: 16px;
   height: 16px;
   margin-right: calc(var(--gutter) * 0.5);
+  line-height: 0;
+  font-size: 32px;
   border: 3px solid var(--input-red);
   border-radius: 6px;
   background: transparent;
 }
 
 .list input[data-checked] + label::before {
-  background: #444;
+  content: '\2713';
 }
 
 .result-container {
@@ -308,21 +308,22 @@ section {
   flex-direction: column;
   align-items: center;
   gap: var(--gutter);
+  margin: 0 auto;
   text-align: center;
 }
 
-.result {
+.result-container .result {
   position: relative;
   width: 25vw;
   height: 25vw;
 }
 
-.result:empty {
+.result-container .result:empty {
   border: 6px solid black;
   border-radius: 100%;
 }
 
-.result svg {
+.result-container .result svg {
   position: absolute;
   top: 0;
   left: 0;
@@ -334,19 +335,27 @@ section {
   transition: fill 0.6s ease;
 }
 
-.result svg[data-layer="prodotto"] {
+.result-container .result svg[data-layer="prodotto"] {
   fill: var(--primary);
   z-index: 1;
 }
 
-.result svg[data-layer="materiale"] {
+.result-container .result svg[data-layer="materiale"] {
   fill: var(--secondary);
   z-index: 0;
 }
 
-.result svg[data-layer="tecnica"] {
+.result-container .result svg[data-layer="tecnica"] {
   fill: var(--tertiary);
   z-index: 2;
+}
+
+.result-container .brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--gutter) * 0.5);
 }
 
 .result-container .brand-name {
@@ -358,5 +367,29 @@ section {
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   text-transform: uppercase;
+}
+
+@media (max-width: 1023px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    flex-wrap: wrap;
+  }
+
+  .palettes {
+    margin: 0 auto;
+  }
+
+  .result-container {
+    max-width: 100%;
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
 }
 </style>

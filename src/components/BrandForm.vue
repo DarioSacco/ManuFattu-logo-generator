@@ -2,27 +2,31 @@
   <form class="brand-form" @change="onEdit">
     <fieldset class="brand">
       <label class="title">Nome della tua attività</label>
-      <input type="text" v-model="brandName" @input="onEdit" required />
+      <input type="text" v-model="name" @input="onEdit" required />
       <label class="title">Di cosa ti occupi?</label>
       <span>Dillo con due o tre parole</span>
-      <input type="text" v-model="brandDescription" @input="onEdit" placeholder="es. riciclo creativo" required />
+      <input type="text" v-model="description" @input="onEdit" placeholder="es. riciclo creativo" required />
     </fieldset>
   </form>
 </template>
 
 <script>
 export default {
+  props: {
+    brandName: String,
+    brandDescription: String,
+  },
   data() {
     return {
-      brandName: '',
-      brandDescription: ''
+      name: this.brandName,
+      description: this.brandDescription,
     };
   },
   methods: {
     onEdit() {
       this.$emit('dataChange', {
-        brandName: this.brandName,
-        brandDescription: this.brandDescription
+        brandName: this.name,
+        brandDescription: this.description,
       });
     }
   }

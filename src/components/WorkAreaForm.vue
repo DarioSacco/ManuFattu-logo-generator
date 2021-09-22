@@ -9,8 +9,8 @@
             id="abbigliamento"
             value="abbigliamento"
             type="checkbox"
-            v-model="prodotti"
-            :data-checked="prodotti.includes('abbigliamento') || null"
+            v-model="currentProdotti"
+            :data-checked="currentProdotti.includes('abbigliamento') || null"
           />
           <label for="abbigliamento">Abbigliamento e accessori</label>
         </li>
@@ -19,8 +19,8 @@
             id="gioielli"
             value="gioielli"
             type="checkbox"
-            v-model="prodotti"
-            :data-checked="prodotti.includes('gioielli') || null"
+            v-model="currentProdotti"
+            :data-checked="currentProdotti.includes('gioielli') || null"
           />
           <label for="gioielli">Gioielli</label>
         </li>
@@ -29,8 +29,8 @@
             id="design"
             value="design"
             type="checkbox"
-            v-model="prodotti"
-            :data-checked="prodotti.includes('design') || null"
+            v-model="currentProdotti"
+            :data-checked="currentProdotti.includes('design') || null"
           />
           <label for="design">Design, complementi d'arredo</label>
         </li>
@@ -39,8 +39,8 @@
             id="cosmetica"
             value="cosmetica"
             type="checkbox"
-            v-model="prodotti"
-            :data-checked="prodotti.includes('cosmetica') || null"
+            v-model="currentProdotti"
+            :data-checked="currentProdotti.includes('cosmetica') || null"
           />
           <label for="cosmetica">Cosmetica</label>
         </li>
@@ -58,8 +58,8 @@
             id="sartoria"
             value="sartoria"
             type="radio"
-            v-model="tecnica"
-            :data-checked="tecnica === 'sartoria' || null"
+            v-model="currentTecnica"
+            :data-checked="currentTecnica === 'sartoria' || null"
           />
           <label for="sartoria">Sartoria</label>
         </li>
@@ -68,8 +68,8 @@
             id="pittura"
             value="pittura"
             type="radio"
-            v-model="tecnica"
-            :data-checked="tecnica === 'pittura' || null"
+            v-model="currentTecnica"
+            :data-checked="currentTecnica === 'pittura' || null"
           />
           <label for="pittura">Pittura</label>
         </li>
@@ -78,8 +78,8 @@
             id="scultura"
             value="scultura"
             type="radio"
-            v-model="tecnica"
-            :data-checked="tecnica === 'scultura' || null"
+            v-model="currentTecnica"
+            :data-checked="currentTecnica === 'scultura' || null"
           />
           <label for="scultura">Scultura</label>
         </li>
@@ -88,8 +88,8 @@
             id="oreficeria"
             value="oreficeria"
             type="radio"
-            v-model="tecnica"
-            :data-checked="tecnica === 'oreficeria' || null"
+            v-model="currentTecnica"
+            :data-checked="currentTecnica === 'oreficeria' || null"
           />
           <label for="oreficeria">Oreficeria</label>
         </li>
@@ -98,8 +98,8 @@
             id="miscelatura"
             value="miscelatura"
             type="radio"
-            v-model="tecnica"
-            :data-checked="tecnica === 'miscelatura' || null"
+            v-model="currentTecnica"
+            :data-checked="currentTecnica === 'miscelatura' || null"
           />
           <label for="miscelatura">Miscelatura</label>
         </li>
@@ -115,8 +115,8 @@
             id="ceramica"
             value="ceramica"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('ceramica') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('ceramica') || null"
           />
           <label for="ceramica">Ceramica</label>
         </li>
@@ -125,8 +125,8 @@
             id="legno"
             value="legno"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('legno') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('legno') || null"
           />
           <label for="legno">Legno</label>
         </li>
@@ -135,8 +135,8 @@
             id="tessuto_cuoio"
             value="tessuto_cuoio"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('tessuto_cuoio') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('tessuto_cuoio') || null"
           />
           <label for="tessuto_cuoio">Tessuto e cuoio</label>
         </li>
@@ -145,8 +145,8 @@
             id="metalli"
             value="metalli"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('metalli') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('metalli') || null"
           />
           <label for="metalli">Metalli</label>
         </li>
@@ -155,8 +155,8 @@
             id="carta"
             value="carta"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('carta') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('carta') || null"
           />
           <label for="carta">Carta</label>
         </li>
@@ -165,8 +165,8 @@
             id="pietra"
             value="pietra"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('pietra') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('pietra') || null"
           />
           <label for="pietra">Pietra</label>
         </li>
@@ -175,8 +175,8 @@
             id="liquido"
             value="liquido"
             type="checkbox"
-            v-model="materiali"
-            :data-checked="materiali.includes('liquido') || null"
+            v-model="currentMateriali"
+            :data-checked="currentMateriali.includes('liquido') || null"
           />
           <label for="liquido">Liquido</label>
         </li>
@@ -187,19 +187,24 @@
 
 <script>
 export default {
+  props: {
+    materiali: Array,
+    prodotti: Array,
+    tecnica: String,
+  },
   data() {
     return {
-      materiali: [],
-      prodotti: [],
-      tecnica: '',
+      currentMateriali: this.materiali,
+      currentProdotti: this.prodotti,
+      currentTecnica: this.tecnica,
     };
   },
   methods: {
     onEdit() {
       this.$emit('dataChange', {
-        materiali: this.materiali,
-        prodotti: this.prodotti,
-        tecnica: this.tecnica,
+        materiali: this.currentMateriali,
+        prodotti: this.currentProdotti,
+        tecnica: this.currentTecnica,
       });
     }
   }

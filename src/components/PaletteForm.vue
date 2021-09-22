@@ -9,8 +9,8 @@
             :id="paletteName"
             :value="paletteName"
             type="radio"
-            v-model="palette"
-            :data-checked="paletteName === palette || null"
+            v-model="currentPalette"
+            :data-checked="paletteName === currentPalette || null"
           />
           <label :for="paletteName">{{ paletteName }}</label>
         </li>
@@ -38,14 +38,17 @@ const PALETTES = [
 ];
 
 export default {
+  props: {
+    palette: String,
+  },
   data() {
     return {
-      palette: '',
+      currentPalette: this.palette,
     };
   },
   methods: {
     onEdit() {
-      this.$emit('dataChange', { palette: this.palette });
+      this.$emit('dataChange', { palette: this.currentPalette });
     }
   },
   computed: {

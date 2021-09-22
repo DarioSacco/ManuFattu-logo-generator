@@ -1,9 +1,30 @@
 <template>
   <div class="page">
     <section class="data-forms">
-      <BrandForm v-if="step == 1" @dataChange="onBrandChanged"></BrandForm>
-      <WorkAreaForm v-else-if="step == 2" @dataChange="onWorkAreaChanged"></WorkAreaForm>
-      <PaletteForm v-else-if="step == 3" @dataChange="onPaletteChanged"></PaletteForm>
+      <transition name="slide">
+        <BrandForm
+          v-if="step == 1"
+          :brand-name="brandName"
+          :brand-description="brandDescription"
+          @dataChange="onBrandChanged"
+        ></BrandForm>
+      </transition>
+      <transition name="slide">
+        <WorkAreaForm
+          v-if="step == 2"
+          :materiali="materiali"
+          :prodotti="prodotti"
+          :tecnica="tecnica"
+          @dataChange="onWorkAreaChanged"
+        ></WorkAreaForm>
+      </transition>
+      <transition name="slide">
+        <PaletteForm
+          v-if="step == 3"
+          :palette="palette"
+          @dataChange="onPaletteChanged"
+        ></PaletteForm>
+      </transition>
     </section>
 
     <section class="result-container">
@@ -26,7 +47,7 @@
       <div class="brand">
         <p class="brand-name">{{ brandName || 'nome attività' }}</p>
         <p class="brand-description">{{ brandDescription || 'descrizione attività' }}</p>
-        <Stepper :step="step" @stepChanged="onStepChanged"></Stepper>
+        <Stepper :step="step" :max="3" @stepChanged="onStepChanged"></Stepper>
       </div>
     </section>
   </div>
@@ -57,6 +78,7 @@ export default {
       prodotti: [],
       tecnica: '',
       step: 1,
+      previousStep: 1,
     };
   },
   methods: {
@@ -73,9 +95,10 @@ export default {
       this.palette = ev.palette;
     },
     onStepChanged(ev) {
+      this.previousStep = this.step;
       this.step = ev.step;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -186,6 +209,7 @@ export default {
 
 :root {
   --input-red: #cf3851;
+  --gray-dark: #383836;
   --gutter: 16px;
 }
 
@@ -194,7 +218,8 @@ export default {
 }
 
 html,
-body {
+body,
+main {
   width: 100%;
   height: 100%;
 }
@@ -205,7 +230,7 @@ html {
 
 body {
   margin: 0;
-  padding: var(--gutter);
+  padding: calc(var(--gutter) * 2);
   font-family: "Poppins", sans-serif;
 }
 
@@ -220,22 +245,34 @@ legend {
   border: none;
 }
 
+.slide-leave-active,
+.slide-enter-active {
+  transition: 0.6s;
+}
+
+.slide-enter-from {
+  transform: translate(100vw, 0);
+}
+
+.slide-leave-to {
+  transform: translate(-100vw, 0);
+}
+
 .page {
   display: flex;
   gap: var(--gutter);
   width: 100%;
-  max-width: 1280px;
   height: 100%;
-  margin: 0 auto;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
 .data-forms {
-  flex: 1 auto;
+  width: 100%;
+  overflow: hidden;
 }
 
 .data-forms > * {
@@ -300,7 +337,7 @@ legend {
 }
 
 .list input[data-checked] + label::before {
-  content: '\2713';
+  content: "\2713";
 }
 
 .result-container {
@@ -308,7 +345,7 @@ legend {
   flex-direction: column;
   align-items: center;
   gap: var(--gutter);
-  margin: 0 auto;
+  width: 30vw;
   text-align: center;
 }
 
@@ -319,7 +356,7 @@ legend {
 }
 
 .result-container .result:empty {
-  border: 6px solid black;
+  border: 6px solid var(--gray-dark);
   border-radius: 100%;
 }
 
@@ -331,22 +368,22 @@ legend {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  fill: #000;
+  fill: var(--gray-dark);
   transition: fill 0.6s ease;
 }
 
-.result-container .result svg[data-layer="prodotto"] {
-  fill: var(--primary);
-  z-index: 1;
-}
-
 .result-container .result svg[data-layer="materiale"] {
-  fill: var(--secondary);
+  fill: var(--secondary, var(--gray-dark));
   z-index: 0;
 }
 
+.result-container .result svg[data-layer="prodotto"] {
+  fill: var(--primary, var(--gray-dark));
+  z-index: 1;
+}
+
 .result-container .result svg[data-layer="tecnica"] {
-  fill: var(--tertiary);
+  fill: var(--tertiary, var(--gray-dark));
   z-index: 2;
 }
 
@@ -356,6 +393,7 @@ legend {
   justify-content: center;
   align-items: center;
   gap: calc(var(--gutter) * 0.5);
+  color: var(--gray-dark);
 }
 
 .result-container .brand-name {
@@ -376,20 +414,26 @@ legend {
 }
 
 @media (max-width: 767px) {
+  :root {
+    --gutter: 12px;
+  }
+
+  body {
+    padding: var(--gutter);
+  }
+
   .page {
     flex-wrap: wrap;
   }
 
-  .palettes {
-    margin: 0 auto;
+  .data-forms {
+    height: 50vh;
+    overflow-y: auto;
   }
 
   .result-container {
-    max-width: 100%;
+    width: 100%;
     flex-direction: row;
   }
-}
-
-@media (min-width: 768px) {
 }
 </style>

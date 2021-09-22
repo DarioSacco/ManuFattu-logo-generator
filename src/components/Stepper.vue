@@ -1,7 +1,7 @@
 <template>
   <div class="stepper">
-    <button class="next" @click="next">Avanti</button>
-    <button class="previous" v-if="step > 1" @click="previous">Indietro</button>
+    <button class="next" :disabled="step >= max" @click="next">Avanti</button>
+    <button class="previous" :disabled="step <= 1" @click="previous">Indietro</button>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
       type: Number,
       default: 1,
     },
+    max: Number,
   },
   data() {
     return {
@@ -20,6 +21,10 @@ export default {
   },
   methods: {
     next() {
+      if (this.current == this.max) {
+        return;
+      }
+
       this.current++;
       this.$emit('stepChanged', { step: this.current });
     },
@@ -46,6 +51,11 @@ export default {
   padding: 0 calc(var(--gutter) * 2);
   border-radius: calc(var(--gutter) * 2);
   cursor: pointer;
+}
+
+.stepper button[disabled] {
+  opacity: 0.7;
+  cursor: default;
 }
 
 .next {

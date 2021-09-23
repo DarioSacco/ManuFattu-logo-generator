@@ -60,6 +60,14 @@ export default {
 </script>
 
 <style>
+.palettes .title::before {
+  content: '';
+}
+
+.palettes .title::before {
+  background-image: url('../../public/assets/images/palette.png');
+}
+
 .palettes label {
   text-transform: capitalize;
 }

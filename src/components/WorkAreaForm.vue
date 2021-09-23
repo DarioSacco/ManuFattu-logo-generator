@@ -215,4 +215,20 @@ export default {
   .work-area-form fieldset {
     max-width: 33%;
   }
+
+  .work-area-form fieldset .title::before {
+      content: '';
+  }
+
+  .prodotti .title::before {
+    background-image: url('../../public/assets/images/prodotti.png');
+  }
+
+  .materiali .title::before {
+    background-image: url('../../public/assets/images/materiali.png');
+  }
+
+  .tecnica .title::before {
+    background-image: url('../../public/assets/images/tecnica.png');
+  }
 </style>

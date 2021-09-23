@@ -211,6 +211,7 @@ export default {
   --input-red: #cf3851;
   --gray-dark: #383836;
   --gutter: 16px;
+  --page-gutter: 24px;
 }
 
 * {
@@ -230,7 +231,7 @@ html {
 
 body {
   margin: 0;
-  padding: calc(var(--gutter) * 2);
+  padding: 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -273,6 +274,7 @@ legend {
 .data-forms {
   width: 100%;
   overflow: hidden;
+  padding: var(--page-gutter) 0 0 var(--page-gutter);
 }
 
 .data-forms > * {
@@ -284,6 +286,19 @@ legend {
 .data-forms fieldset {
   display: flex;
   flex-direction: column;
+}
+
+.data-forms fieldset .title {
+  position: relative;
+}
+
+.data-forms fieldset .title::before {
+  position: absolute;
+  top: -10px;
+  left: -18px;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
 }
 
 .data-forms * + .list {
@@ -346,6 +361,7 @@ legend {
   align-items: center;
   gap: var(--gutter);
   width: 30vw;
+  padding: var(--page-gutter) var(--page-gutter) 0 0;
   text-align: center;
 }
 
@@ -418,10 +434,6 @@ legend {
     --gutter: 12px;
   }
 
-  body {
-    padding: var(--gutter);
-  }
-
   .page {
     flex-wrap: wrap;
   }
@@ -429,11 +441,13 @@ legend {
   .data-forms {
     height: 50vh;
     overflow-y: auto;
+    padding-right: var(--page-gutter);
   }
 
   .result-container {
     width: 100%;
     flex-direction: row;
+    padding: var(--page-gutter);
   }
 }
 </style>

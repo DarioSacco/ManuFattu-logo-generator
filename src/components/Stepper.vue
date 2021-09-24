@@ -55,6 +55,7 @@ export default {
 
 .stepper button[disabled] {
   opacity: 0.7;
+  color: inherit;
   cursor: default;
 }
 

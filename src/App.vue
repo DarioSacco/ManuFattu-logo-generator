@@ -448,35 +448,47 @@ legend {
     height: 50vh;
     overflow-y: auto;
     padding-right: var(--page-gutter);
+    border-bottom: 2px dashed var(--gray-dark);
+  }
+
+  .data-forms .work-area-form {
+    flex-wrap: wrap;
+  }
+
+  .data-forms .work-area-form fieldset {
+    max-width: 100%;
   }
 
   .result-container {
     width: 100%;
     height: 50vh;
     flex-direction: row;
-    padding: var(--page-gutter);
+    padding: 0
+      var(--page-gutter)
+      var(--page-gutter)
+      var(--page-gutter);
+  }
+
+  .result-container > * {
+    width: 100%;
+    max-width: 50vw;
   }
 
   .result-container .aspect-ratio-box {
     position: relative;
-    width: 100%;
-    max-width: 50vw;
     max-height: 100%;
-    height: 0;
+  }
+
+  .result-container .aspect-ratio-box::after {
+    content: '';
+    display: block;
     padding-bottom: 100%;
   }
 
   .result-container .result {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-  }
-
-  .result-container .brand {
-    width: 100%;
-    max-width: 50vw;
   }
 }
 </style>

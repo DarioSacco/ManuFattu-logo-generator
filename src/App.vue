@@ -235,6 +235,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+button {
+  font-family: inherit;
+}
+
 p {
   margin: 0;
 }

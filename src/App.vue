@@ -28,20 +28,22 @@
     </section>
 
     <section class="result-container">
-      <div :class="['result', palette]">
-        <LogoFragment
-          v-for="prodotto in prodotti"
-          :name="prodotto"
-          :key="prodotto"
-          data-layer="prodotto"
-        ></LogoFragment>
-        <LogoFragment
-          v-for="materiale in materiali"
-          :name="materiale"
-          :key="materiale"
-          data-layer="materiale"
-        ></LogoFragment>
-        <LogoFragment v-show="!!tecnica" :name="tecnica" data-layer="tecnica"></LogoFragment>
+      <div class="aspect-ratio-box">
+        <div :class="['result', palette]">
+          <LogoFragment
+            v-for="prodotto in prodotti"
+            :name="prodotto"
+            :key="prodotto"
+            data-layer="prodotto"
+          ></LogoFragment>
+          <LogoFragment
+            v-for="materiale in materiali"
+            :name="materiale"
+            :key="materiale"
+            data-layer="materiale"
+          ></LogoFragment>
+          <LogoFragment v-show="!!tecnica" :name="tecnica" data-layer="tecnica"></LogoFragment>
+        </div>
       </div>
 
       <div class="brand">
@@ -450,8 +452,31 @@ legend {
 
   .result-container {
     width: 100%;
+    height: 50vh;
     flex-direction: row;
     padding: var(--page-gutter);
+  }
+
+  .result-container .aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    max-width: 50vw;
+    max-height: 100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
+
+  .result-container .result {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .result-container .brand {
+    width: 100%;
+    max-width: 50vw;
   }
 }
 </style>

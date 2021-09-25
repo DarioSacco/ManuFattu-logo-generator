@@ -107,7 +107,7 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
 @font-face {
   font-family: "Rectory";
@@ -266,6 +266,8 @@ legend {
 
 .page {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: var(--gutter);
   width: 100%;
   height: 100%;
@@ -274,15 +276,15 @@ legend {
 .title {
   font-size: 1.5rem;
   font-weight: 500;
+  line-height: 1;
 }
 
 .data-forms {
-  width: 100%;
+  max-width: 50%;
   overflow: hidden;
-  padding: var(--page-gutter) 0 0 var(--page-gutter);
 }
 
-.data-forms > * {
+.data-forms form {
   display: flex;
   gap: var(--gutter);
   height: 100%;
@@ -365,8 +367,7 @@ legend {
   flex-direction: column;
   align-items: center;
   gap: var(--gutter);
-  width: 30vw;
-  padding: var(--page-gutter) var(--page-gutter) 0 0;
+  max-width: 50%;
   text-align: center;
 }
 
@@ -393,18 +394,18 @@ legend {
   transition: fill 0.6s ease;
 }
 
-.result-container .result svg[data-layer="materiale"] {
-  fill: var(--secondary, var(--gray-dark));
-  z-index: 0;
-}
-
 .result-container .result svg[data-layer="prodotto"] {
   fill: var(--primary, var(--gray-dark));
-  z-index: 1;
+  z-index: 0;
 }
 
 .result-container .result svg[data-layer="tecnica"] {
   fill: var(--tertiary, var(--gray-dark));
+  z-index: 1;
+}
+
+.result-container .result svg[data-layer="materiale"] {
+  fill: var(--secondary, var(--gray-dark));
   z-index: 2;
 }
 
@@ -420,6 +421,7 @@ legend {
 .result-container .brand-name {
   font-family: "Rectory", sans-serif;
   font-size: 3rem;
+  -webkit-text-stroke: 1px;
 }
 
 .result-container .brand-description {
@@ -446,7 +448,6 @@ legend {
   .data-forms {
     height: 50vh;
     overflow-y: auto;
-    padding-right: var(--page-gutter);
     border-bottom: 2px dashed var(--gray-dark);
   }
 
@@ -462,10 +463,6 @@ legend {
     width: 100%;
     height: 50vh;
     flex-direction: row;
-    padding: 0
-      var(--page-gutter)
-      var(--page-gutter)
-      var(--page-gutter);
   }
 
   .result-container > * {

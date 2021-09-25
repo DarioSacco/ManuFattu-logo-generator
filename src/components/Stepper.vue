@@ -61,12 +61,12 @@ export default {
 
 .next {
   color: white;
-  background: linear-gradient(to top, #686836, #E2E333);
+  background: linear-gradient(to top, #c3c434, #e2e333);
   border: none;
 }
 
 .previous {
   background: white;
-  border: 1px solid #707070;
+  border: 1px solid var(--gray-dark);
 }
 </style>

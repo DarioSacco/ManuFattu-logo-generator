@@ -111,12 +111,11 @@ export default {
 
 @font-face {
   font-family: "Rectory";
-  src: url("/assets/font/Rectory-Display.eot");
-  src: local("Rectory"), local("Rectory-Display"),
-    url("/assets/font/Rectory-Display.eot?#iefix") format("embedded-opentype"),
-    url("/assets/font/Rectory-Display.woff2") format("woff2"),
-    url("/assets/font/Rectory-Display.woff") format("woff"),
-    url("/assets/font/Rectory-Display.ttf") format("truetype");
+  src: url("../public/assets/font/Rectory-Display.eot");
+  src: url("../public/assets/font/Rectory-Display.eot?#iefix") format("embedded-opentype"),
+    url("../public/assets/font/Rectory-Display.woff2") format("woff2"),
+    url("../public/assets/font/Rectory-Display.woff") format("woff"),
+    url("../public/assets/font/Rectory-Display.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

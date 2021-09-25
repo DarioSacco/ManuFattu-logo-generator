@@ -1,3 +1,6 @@
 module.exports = {
-  assetsDir: 'public/assets'
+  assetsDir: 'assets',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/ManuFattu-logo-generator/'
+    : '/',
 }

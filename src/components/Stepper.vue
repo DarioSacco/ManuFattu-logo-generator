@@ -50,6 +50,7 @@ export default {
   margin: 0;
   padding: 0 calc(var(--gutter) * 2);
   border-radius: calc(var(--gutter) * 2);
+  font-size: 1rem;
   cursor: pointer;
 }
 

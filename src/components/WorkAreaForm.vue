@@ -1,6 +1,5 @@
 <template>
   <form class="work-area-form" @change="onEdit">
-
     <fieldset class="prodotti">
       <legend class="title">Quali prodotti realizzi?</legend>
       <span>Scegli tutto quello che vuoi.</span>
@@ -48,7 +47,7 @@
       </ul>
     </fieldset>
 
-    <div>
+    <div class="lower-block">
       <fieldset class="tecnica">
         <legend class="title">
           Qual è la tecnica che utilizzi maggiormente?
@@ -214,27 +213,29 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .work-area-form {
     display: flex;
     flex-direction: column;
-  }
-
-  .work-area-form > div {
-    display: flex;
-    gap: inherit;
-  }
-
-  .work-area-form > div > * {
-    width: 50%;
+    gap: calc(var(--gutter) * 2);
   }
 
   .work-area-form > * {
     width: 100%;
   }
 
+  .work-area-form .lower-block {
+    display: flex;
+    gap: inherit;
+  }
+
+  .work-area-form .lower-block > * {
+    width: 50%;
+  }
+
   .work-area-form fieldset .title::before {
-      content: '';
+    content: '';
+    background-repeat: no-repeat;
   }
 
   .prodotti .title::before {
@@ -251,5 +252,13 @@ export default {
 
   .tecnica .title::before {
     background-image: url('../../public/assets/images/tecnica.png');
+  }
+
+  @media (max-width: 767px) {
+    .work-area-form {
+      height: 100%;
+      gap: var(--gutter);
+      padding: 0 var(--gutter);
+    }
   }
 </style>

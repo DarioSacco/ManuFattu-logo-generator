@@ -1,0 +1,83 @@
+.fresco {
+  --primary: #6cb4a0;
+  --secondary: #88d3db;
+  --tertiary: #70acf1;
+}
+
+.solare {
+  --primary: #feca3a;
+  --secondary: #f49517;
+  --tertiary: #d34016;
+}
+
+.pastello {
+  --primary: #e1dc7e;
+  --secondary: #f5bf7e;
+  --tertiary: #f18881;
+}
+
+.dark {
+  --primary: #0672a8;
+  --secondary: #133658;
+  --tertiary: #0e2132;
+}
+
+.bio {
+  --primary: #b2aa4f;
+  --secondary: #4c722c;
+  --tertiary: #70a35d;
+}
+
+.gold {
+  --primary: #ffd508;
+  --secondary: #95907e;
+  --tertiary: #f8ad15;
+}
+
+.tea {
+  --primary: #7b7b7c;
+  --secondary: #acd7bd;
+  --tertiary: #e6bf79;
+}
+
+.pink {
+  --primary: #ee7e98;
+  --secondary: #efa8b6;
+  --tertiary: #f0cfdd;
+}
+
+.estate {
+  --primary: #8ccdc6;
+  --secondary: #dc6758;
+  --tertiary: #f6a55c;
+}
+
+.mare {
+  --primary: #06466b;
+  --secondary: #096c8a;
+  --tertiary: #1595ac;
+}
+
+.coffee {
+  --primary: #dfb78c;
+  --secondary: #ac6834;
+  --tertiary: #4c291a;
+}
+
+.lago {
+  --primary: #1f858f;
+  --secondary: #bbd0e3;
+  --tertiary: #d3bb9c;
+}
+
+.salotto {
+  --primary: #1b768f;
+  --secondary: #eddf97;
+  --tertiary: #9a2b17;
+}
+
+.muschio {
+  --primary: #849971;
+  --secondary: #426447;
+  --tertiary: #25423d;
+}

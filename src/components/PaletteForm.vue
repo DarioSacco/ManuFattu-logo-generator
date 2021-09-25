@@ -62,10 +62,8 @@ export default {
 <style>
 .palettes .title::before {
   content: '';
-}
-
-.palettes .title::before {
   background-image: url('../../public/assets/images/palette.png');
+  background-repeat: no-repeat;
 }
 
 .palettes label {

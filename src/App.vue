@@ -1,26 +1,22 @@
 <template>
   <div class="page">
     <section class="data-forms">
-      <transition name="slide">
+      <transition name="slide" mode="out-in">
         <BrandForm
           v-if="step == 1"
           :brand-name="brandName"
           :brand-description="brandDescription"
           @dataChange="onBrandChanged"
         ></BrandForm>
-      </transition>
-      <transition name="slide">
         <WorkAreaForm
-          v-if="step == 2"
+          v-else-if="step == 2"
           :materiali="materiali"
           :prodotti="prodotti"
           :tecnica="tecnica"
           @dataChange="onWorkAreaChanged"
         ></WorkAreaForm>
-      </transition>
-      <transition name="slide">
         <PaletteForm
-          v-if="step == 3"
+          v-else-if="step == 3"
           :palette="palette"
           @dataChange="onPaletteChanged"
         ></PaletteForm>
@@ -105,10 +101,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-
 @font-face {
   font-family: "Rectory";
   src: url("../public/assets/font/Rectory-Display.eot");
@@ -120,99 +112,15 @@ export default {
   font-style: normal;
   font-display: swap;
 }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
-/* --- Palettes --- */
-.fresco {
-  --primary: #6cb4a0;
-  --secondary: #88d3db;
-  --tertiary: #70acf1;
-}
-
-.solare {
-  --primary: #feca3a;
-  --secondary: #f49517;
-  --tertiary: #d34016;
-}
-
-.pastello {
-  --primary: #e1dc7e;
-  --secondary: #f5bf7e;
-  --tertiary: #f18881;
-}
-
-.dark {
-  --primary: #0672a8;
-  --secondary: #133658;
-  --tertiary: #0e2132;
-}
-
-.bio {
-  --primary: #b2aa4f;
-  --secondary: #4c722c;
-  --tertiary: #70a35d;
-}
-
-.gold {
-  --primary: #ffd508;
-  --secondary: #95907e;
-  --tertiary: #f8ad15;
-}
-
-.tea {
-  --primary: #7b7b7c;
-  --secondary: #acd7bd;
-  --tertiary: #e6bf79;
-}
-
-.pink {
-  --primary: #ee7e98;
-  --secondary: #efa8b6;
-  --tertiary: #f0cfdd;
-}
-
-.estate {
-  --primary: #8ccdc6;
-  --secondary: #dc6758;
-  --tertiary: #f6a55c;
-}
-
-.mare {
-  --primary: #06466b;
-  --secondary: #096c8a;
-  --tertiary: #1595ac;
-}
-
-.coffee {
-  --primary: #dfb78c;
-  --secondary: #ac6834;
-  --tertiary: #4c291a;
-}
-
-.lago {
-  --primary: #1f858f;
-  --secondary: #bbd0e3;
-  --tertiary: #d3bb9c;
-}
-
-.salotto {
-  --primary: #1b768f;
-  --secondary: #eddf97;
-  --tertiary: #9a2b17;
-}
-
-.muschio {
-  --primary: #849971;
-  --secondary: #426447;
-  --tertiary: #25423d;
-}
-
-/* --- Fine palettes --- */
+@import './assets/css/palettes.css';
 
 :root {
   --input-red: #cf3851;
   --gray-dark: #383836;
   --gutter: 16px;
-  --page-gutter: 24px;
 }
 
 * {
@@ -251,17 +159,34 @@ legend {
   border: none;
 }
 
+#app {
+  /* previene che la scrollbar spunti arrandom
+  durante la transition dei forms */
+  overflow: hidden;
+}
+
 .slide-leave-active,
 .slide-enter-active {
-  transition: 0.6s;
+  transition: 0.4s;
 }
 
 .slide-enter-from {
   transform: translate(100vw, 0);
 }
 
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+}
+
 .slide-leave-to {
   transform: translate(-100vw, 0);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .page {
@@ -271,23 +196,20 @@ legend {
   gap: var(--gutter);
   width: 100%;
   height: 100%;
+  padding: var(--gutter);
 }
 
-.title {
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1;
+.page > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 50%;
+  width: 100%;
+  height: 100%;
 }
 
 .data-forms {
-  max-width: 50%;
-  overflow: hidden;
-}
-
-.data-forms form {
-  display: flex;
-  gap: var(--gutter);
-  height: 100%;
+  z-index: 0;
 }
 
 .data-forms fieldset {
@@ -301,11 +223,12 @@ legend {
 
 .data-forms fieldset .title::before {
   position: absolute;
-  top: -10px;
-  left: -18px;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  transform: translate(-45%, -30%);
   background-size: contain;
-  width: 40px;
-  height: 40px;
 }
 
 .data-forms * + .list {
@@ -346,7 +269,6 @@ legend {
 
 .list input + label::before {
   content: "";
-  display: inline-flex;
   width: 16px;
   min-width: 16px;
   height: 16px;
@@ -363,11 +285,10 @@ legend {
 }
 
 .result-container {
-  display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--gutter);
-  max-width: 50%;
+  z-index: 1;
+  background: white;
   text-align: center;
 }
 
@@ -421,7 +342,7 @@ legend {
 .result-container .brand-name {
   font-family: "Rectory", sans-serif;
   font-size: 3rem;
-  -webkit-text-stroke: 1px;
+  -webkit-text-stroke: 1px currentColor;
 }
 
 .result-container .brand-description {
@@ -445,34 +366,25 @@ legend {
     flex-wrap: wrap;
   }
 
-  .data-forms {
-    height: 50vh;
-    overflow-y: auto;
-    border-bottom: 2px dashed var(--gray-dark);
-  }
-
-  .data-forms .work-area-form {
-    flex-wrap: wrap;
-  }
-
-  .data-forms .work-area-form fieldset {
+  .page > * {
+    --half-screen: calc(50vh - (var(--gutter) * 2));
     max-width: 100%;
+    height: var(--half-screen);
+  }
+
+  .data-forms {
+    overflow: hidden auto;
+    border-bottom: 2px solid var(--gray-dark);
   }
 
   .result-container {
     width: 100%;
-    height: 50vh;
-    flex-direction: row;
-  }
-
-  .result-container > * {
-    width: 100%;
-    max-width: 50vw;
+    justify-content: flex-start;
   }
 
   .result-container .aspect-ratio-box {
     position: relative;
-    max-height: 100%;
+    width: calc(var(--half-screen) / 2);
   }
 
   .result-container .aspect-ratio-box::after {

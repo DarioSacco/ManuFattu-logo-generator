@@ -1,5 +1,5 @@
 <template>
-  <component :is="componentName"></component>
+  <component v-if="componentName" :is="componentName"></component>
 </template>
 
 <script>
@@ -42,7 +42,10 @@ export default {
   props: ['name'],
   computed: {
     componentName() {
-      return this.name.charAt(0).toUpperCase() + this.name.slice(1);
+      return this.name
+        .split('_')
+        .map(part => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+        .join('');
     },
   }
 }

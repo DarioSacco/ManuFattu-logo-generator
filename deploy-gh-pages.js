@@ -7,6 +7,8 @@
  * > git subtree push --prefix dist origin gh-pages
  *
  * poi riprovare a lanciare lo script.
+ *
+ * NB: Lanciare il comando solo dal branch `gh-pages`.
  */
 
 const { execSync } = require("child_process");

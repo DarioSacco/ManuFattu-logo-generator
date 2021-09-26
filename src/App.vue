@@ -321,12 +321,12 @@ legend {
 }
 
 .result-container .result svg[data-layer="tecnica"] {
-  fill: var(--tertiary, var(--gray-dark));
+  fill: var(--secondary, var(--gray-dark));
   z-index: 1;
 }
 
 .result-container .result svg[data-layer="materiale"] {
-  fill: var(--secondary, var(--gray-dark));
+  fill: var(--tertiary, var(--gray-dark));
   z-index: 2;
 }
 

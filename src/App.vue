@@ -43,7 +43,6 @@
       </div>
 
       <div class="brand">
-        <Logo class="brand-logo"></Logo>
         <p class="brand-name">{{ brandName || 'nome attività' }}</p>
         <p class="brand-description">{{ brandDescription || 'descrizione attività' }}</p>
         <Stepper :step="step" :max="3" @stepChanged="onStepChanged"></Stepper>
@@ -53,7 +52,6 @@
 </template>
 
 <script>
-import Logo from '../public/assets/images/logo.svg?inline';
 import Stepper from './components/Stepper.vue';
 import BrandForm from './components/BrandForm.vue';
 import WorkAreaForm from './components/WorkAreaForm.vue';
@@ -63,7 +61,6 @@ import LogoFragment from './components/LogoFragment.vue';
 export default {
   name: 'App',
   components: {
-    Logo,
     Stepper,
     BrandForm,
     WorkAreaForm,
@@ -340,14 +337,6 @@ legend {
   align-items: center;
   gap: calc(var(--gutter) * 0.5);
   color: var(--gray-dark);
-}
-
-.result-container .brand .brand-logo {
-  height: 50px;
-}
-
-.result-container .brand .brand-logo .cls-1 {
-  fill: var(--gray-dark);
 }
 
 .result-container .brand-name {

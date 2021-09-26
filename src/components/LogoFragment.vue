@@ -1,5 +1,5 @@
 <template>
-  <component v-if="componentName" :is="componentName"></component>
+  <component class="logo-fragment" v-if="componentName" :is="componentName"></component>
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style>
-svg .cls-1 {
+.logo-fragment circle.cls-1 {
   fill: none;
 }
 </style>

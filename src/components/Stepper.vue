@@ -1,7 +1,7 @@
 <template>
   <div class="stepper">
-    <button class="next" :disabled="step >= max" @click="next">Avanti</button>
-    <button class="previous" :disabled="step <= 1" @click="previous">Indietro</button>
+    <button class="next" v-show="step < max" @click="next">Avanti</button>
+    <button class="previous" v-show="step > 1" @click="previous">Indietro</button>
   </div>
 </template>
 
@@ -54,10 +54,8 @@ export default {
   cursor: pointer;
 }
 
-.stepper button[disabled] {
-  opacity: 0.7;
-  color: inherit;
-  cursor: default;
+.stepper button:hover {
+  filter: drop-shadow(0 0 2px #707070);
 }
 
 .next {
